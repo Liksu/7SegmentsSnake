@@ -1,4 +1,6 @@
-﻿# hi
+﻿---
+title: Snake.h
+---
 
 <style>
     text {font-family: sans-serif; font-size: 2em; fill: silver; alignment-baseline: middle; text-anchor: middle}
@@ -6,22 +8,25 @@
     svg {margin: 0 auto; display: block}
 </style>
 
+# Snake.h
+
+### Demo
+
+<svg id="demo" width="100%" height="128"></svg>
+
 <script type="module">
     import Display from "./display.js";
     import Snake from "./snake.js";
 
-    const config = {
-        size: {width: '100%'}
-    };
+    const config = {};
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const params = Array.from(urlParams).reduce((obj, [k, v]) => (obj[k] = v || true, obj), {});
-    if (params.hideDP) config.showDP = false;
-    if (params.hideDots) config.showDots = false;
-    if (params.debug) config.showText = true;
-    if (params.digits) config.digitsCount = parseInt(params.digits);
+    const params = new URLSearchParams(window.location.search);
+    if (params.has('hideDP')) config.showDP = false;
+    if (params.has('hideDots')) config.showDots = false;
+    if (params.has('debug')) config.showText = true;
+    if (params.has('digits')) config.digitsCount = parseInt(params.get('digits'));
 
-    window.display = new Display(undefined, config);
+    window.display = new Display('#demo', config);
     window.snake = new Snake(display, display.digitsCount);
 
     snake.start();
