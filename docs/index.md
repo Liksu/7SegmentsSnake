@@ -35,3 +35,5 @@ title: Snake.h
 <script nomodule>
     document.write('Please, use browser that supports JS modules');
 </script>
+
+<iframe width="320" height="179" src="https://www.youtube.com/embed/Ws4qPjABhV8" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
