@@ -64,6 +64,7 @@ private:
 
     LedControl* ledControl;
 
+    uint8_t getFirst();
     uint8_t getNext(uint8_t position);
 
     void drawSeg(uint8_t pos, bool show = true);
@@ -80,9 +81,9 @@ public:
 
     void tick();
 
-    void stop();
+    void stop(bool hide = true);
 
-    void start();
+    void start(bool resetHead = true);
 };
 
 

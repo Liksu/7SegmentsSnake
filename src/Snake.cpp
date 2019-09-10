@@ -8,8 +8,15 @@ Snake::Snake(LedControl &ledControl, uint8_t digits, uint16_t delay_ms) {
     this->ledControl = &ledControl;
     this->digitsCount = digits;
     this->delay = delay_ms;
+}
 
-    head = (random(4) << 6) | (random(digits) << 3) | (random(7) + 1);
+uint8_t Snake::getFirst() {
+    uint8_t segment = random(7);
+    bool isHorizontal = !(segment % 3);
+    uint8_t direction = random(2);
+    direction = direction << 1 | (direction ^ isHorizontal);
+
+    return (direction << 6) | (random(digitsCount) << 3) | (segment + 1);
 }
 
 uint8_t Snake::getNext(uint8_t position) {
@@ -67,11 +74,18 @@ void Snake::tick() {
     }
 }
 
-void Snake::stop() {
+void Snake::stop(bool hide = true) {
     enabled = false;
+    if (hide) {
+        drawSeg(head, false);
+        drawSeg(tail1, false);
+        drawSeg(tail2, false);
+    }
 }
 
-void Snake::start() {
+void Snake::start(bool resetHead = true) {
+    if (resetHead) head = getFirst();
+
     drawSeg(head);
     timer = millis();
     enabled = true;

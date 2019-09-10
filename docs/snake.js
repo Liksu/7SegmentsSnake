@@ -42,10 +42,12 @@ export default class Snake {
         this.digitsCount = digits;
         this.delay = delay_ms;
 
-        let segment = random(7) + 1;
+        let segment = random(7);
+        let magic = +!(segment % 3);
+        let direction = random(2);
+        direction = direction << 1 | (direction ^ magic);
 
-
-        this.head = (random(4) << 6) | (random(digits) << 3) | (random(7) + 1);
+        this.head = (direction << 6) | (random(digits) << 3) | (segment + 1);
         this.tail1 = null;
         this.tail2 = null;
         this.enabled = false;
@@ -56,14 +58,14 @@ export default class Snake {
         let prefix = ((position >> 6) & 3) << 3 | (position & 7);
         let shift = 7;
         const digit = (position >> 3) & 7;
-        if (digit == 0) {
+        if (digit === 0) {
             prefix = prefix << 1;
             shift--;
             if (this.digitsCount < 2) {
                 prefix = prefix << 1;
                 shift--;
             }
-        } else if (digit == (this.digitsCount - 1)) {
+        } else if (digit === (this.digitsCount - 1)) {
             prefix = prefix << 2;
             shift -= 2;
         }
@@ -71,7 +73,7 @@ export default class Snake {
         let found = -1;
         let temp;
         for (let i = 0; i < steps.length; i++) {
-            if (prefix == (steps[i] >> shift) || (shift == 5 && this.digitsCount > 1 && (prefix | 3) == (steps[i] >> shift))) {
+            if (prefix === (steps[i] >> shift) || (shift === 5 && this.digitsCount > 1 && (prefix | 3) === (steps[i] >> shift))) {
                 found++;
                 temp = steps[i];
                 steps[i] = steps[found];
@@ -79,9 +81,9 @@ export default class Snake {
             }
         }
 
-        if (found == -1) return 0b01000001;
+        if (found === -1) return 0b01000001;
 
-        temp = found == 0 ? steps[0] : steps[random(found + 1)];
+        temp = found === 0 ? steps[0] : steps[random(found + 1)];
 
         return ((temp & 3) << 6) | ((digit + (bitRead(temp, 6) ? -1 : 1) * bitRead(temp, 5)) << 3) | ((temp >> 2) & 7);
     }
@@ -109,6 +111,7 @@ export default class Snake {
 
     stop() {
         this.enabled = false;
+        this.display.clear();
     }
 
     start() {
