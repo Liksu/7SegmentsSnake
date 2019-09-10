@@ -26,7 +26,7 @@ title: Snake.h
     if (params.has('debug')) config.showText = true;
     if (params.has('digits')) config.digitsCount = parseInt(params.get('digits'));
 
-    window.display = new Display('#demo', config);
+    window.display = new Display('svg#demo', config);
     window.snake = new Snake(display, display.digitsCount);
 
     snake.start();
