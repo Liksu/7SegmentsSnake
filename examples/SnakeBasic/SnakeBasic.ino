@@ -14,6 +14,12 @@ void setup() {
     ledControl.setIntensity(0, 15);
     ledControl.clearDisplay(0);
 
+    // start serial for debug
+    Serial.begin(9600);
+
+    // make random more random
+    randomSeed(analogRead(A7));
+
     // start snake
     snake.start();
 }
@@ -21,4 +27,19 @@ void setup() {
 void loop() {
     // move snake
     snake.tick();
+
+    // add some commands via serial
+    String input;
+    while (Serial.available()) {
+        input = Serial.readString();
+        if (input.startsWith(F("stop"))) snake.stop();
+        if (input.startsWith(F("pause"))) snake.stop(false);
+        if (input.startsWith(F("continue"))) snake.start(false);
+        if (input.startsWith(F("go"))) snake.start(false);
+        if (input.startsWith(F("restart"))) {
+            ledControl.clearDisplay(0);
+            snake.start();
+        }
+        if (input.startsWith(F("start"))) snake.start();
+    }
 }
