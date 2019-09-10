@@ -1,0 +1,27 @@
+###############################
+# Syntax Coloring Map For Snake
+###############################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+Sanke	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+start	KEYWORD2
+stop	KEYWORD2
+tick	KEYWORD2
+move	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+enabled LITERAL1
+head    LITERAL1
+tail1   LITERAL1
+tail2   LITERAL1
