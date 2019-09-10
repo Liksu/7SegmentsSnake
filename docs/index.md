@@ -39,6 +39,8 @@ void loop() {
 }
 ```
 
+
+
 ## Demo
 
 <svg id="demo" width="100%" height="128"></svg>
@@ -68,6 +70,8 @@ void loop() {
 <script nomodule>
     document.write('Please, use browser that supports JS modules');
 </script>
+
+
 
 ## Video of real usage
 
