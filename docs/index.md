@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Snake.h</title>
-</head>
+﻿# hi
+
 <style>
     text {font-family: sans-serif; font-size: 2em; fill: silver; alignment-baseline: middle; text-anchor: middle}
     text.small {font-size: 0.8em; fill: darkgray}
     svg {margin: 0 auto; display: block}
 </style>
-
-<body></body>
 
 <script type="module">
     import Display from "./display.js";
@@ -36,4 +30,3 @@
 <script nomodule>
     document.write('Please, use browser that supports JS modules');
 </script>
-</html>
