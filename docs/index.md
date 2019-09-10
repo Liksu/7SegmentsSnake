@@ -10,7 +10,9 @@ title: Snake.h
 
 # Snake.h
 
-### Demo
+
+
+## Demo
 
 <svg id="demo" width="100%" height="128"></svg>
 
@@ -29,11 +31,17 @@ title: Snake.h
     window.display = new Display('svg#demo', config);
     window.snake = new Snake(display, display.digitsCount);
 
-    snake.start();
-    window.timerId = setInterval(() => snake.tick(), 50);
+    if (params.has('word')) {
+        display.setWord(params.get('word'));
+    } else {
+        snake.start();
+        window.timerId = setInterval(() => snake.tick(), 50);
+    }
 </script>
 <script nomodule>
     document.write('Please, use browser that supports JS modules');
 </script>
 
-<iframe width="320" height="179" src="https://www.youtube.com/embed/Ws4qPjABhV8" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+## Video of real usage
+
+<center><iframe width="320" height="179" src="https://www.youtube.com/embed/Ws4qPjABhV8" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></center>

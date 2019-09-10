@@ -40,6 +40,7 @@ const defaultColors = {
     dot: 'lightgray'
 };
 
+
 /**
  * class Display
  * @extends config
@@ -84,6 +85,7 @@ export default class Display {
     
     draw() {
         this.digits = [];
+        this.semicolons = [];
         let x = 0;
         for (let i = 0; i < this.digitsCount; i++) {
             this.digits.push(this.makeDigit(x));
@@ -91,7 +93,7 @@ export default class Display {
 
             const reverseI = this.digitsCount - i;
             if (this.showDots && reverseI % 2 && reverseI > 2) {
-                this.makeSemicolon(x + this.size.radius);
+                this.semicolons.push(this.makeSemicolon(x + this.size.radius));
                 x += this.size.dotsPlace;
             }
         }
@@ -149,6 +151,40 @@ export default class Display {
         segment.setAttribute('fill', status ? this.colors.active : this.colors.normal);
     }
 
+    clearDigit(digitIndex) {
+        this.digits[digitIndex].forEach(segment => segment && this.fillSegment(segment, false));
+    }
+
+    clear() {
+        this.digits.forEach((digit, i) => this.clearDigit(i));
+    }
+
+    setChar(digitIndex, char, dot = false) {
+        const charByte = Display.getCharByte(char) | dot;
+        this.digits[digitIndex].forEach((segment, i) => {
+            if (segment) this.fillSegment(segment, charByte >> (7 - i) & 1);
+        });
+    }
+
+    setWord(word) {
+        let char = 0;
+        this.digits.forEach((_, i) => {
+            this.setChar(i, word[char++] || ' ', Boolean(word[char] === '.' && char++));
+        });
+    }
+
+    setSemicolon(index, dotUp, dotDown = dotUp) {
+        if (typeof index === 'boolean' && dotUp === undefined) {
+            dotUp = dotDown = index;
+            index = 0;
+        }
+
+        if (!this.showDots || index >= this.semicolons.length) return;
+
+        this.fillSegment(this.semicolons[index].dotUp, dotUp);
+        this.fillSegment(this.semicolons[index].dotDown, dotDown);
+    }
+
     makeDigit(x = 0) {
         const index = this.digits.length;
         const group = document.createElementNS(xmlns, 'g');
@@ -189,6 +225,8 @@ export default class Display {
         group.appendChild(dotDown);
 
         this.svg.appendChild(group);
+
+        return Object.assign([dotUp, dotDown], {dotUp, dotDown});
     }
 
     addSegment(parent = this.svg, name, x, y) {
@@ -254,5 +292,83 @@ export default class Display {
             [sHeight - p, sWidth],
             [p, sWidth]
         ];
+    }
+
+    static getCharByte(char) {
+        switch (char) {   //   ABCDEFGp           A
+            case '0': return 0b11111100;   //    ---
+            case '1': return 0b01100000;   //   |   |
+            case '2': return 0b11011010;   // F |   | B
+            case '3': return 0b11110010;   //   | G |
+            case '4': return 0b01100110;   //    ---
+            case '5': return 0b10110110;   //   |   |
+            case '6': return 0b10111110;   // E |   | C
+            case '7': return 0b11100000;   //   |   |
+            case '8': return 0b11111110;   //    ---  (*) p
+            case '9': return 0b11110110;   //     D
+
+            case 'A':
+            case 'a': return 0b11101110;
+            case 'B':
+            case 'b': return 0b00111110;
+            case 'C': return 0b10011100;
+            case 'c': return 0b00011010;
+            case 'D':
+            case 'd': return 0b01111010;
+            case 'E':
+            case 'e': return 0b10011110;
+            case 'F':
+            case 'f': return 0b10001110;
+            case 'G':
+            case 'g': return 0b10111100;
+            case 'H': return 0b01101110;
+            case 'h': return 0b00101110;
+            case 'I':
+            case 'i': return 0b00001100;
+            case 'J':
+            case 'j': return 0b01111000;
+            case 'L':
+            case 'l': return 0b00011100;
+            case 'N':
+            case 'n': return 0b00101010;
+            case 'O': return 0b11111100;
+            case 'o': return 0b00111010;
+            case 'P':
+            case 'p': return 0b11001110;
+            case 'Q':
+            case 'q': return 0b11100110;
+            case 'R':
+            case 'r': return 0b00001010;
+            case 'S':
+            case 's': return 0b10110110;
+            case 'T':
+            case 't': return 0b00011110;
+            case 'U': return 0b01111100;
+            case 'u': return 0b00111000;
+            case 'Y':
+            case 'y': return 0b01110110;
+
+            case '_': return 0b00010000;
+            case '-': return 0b00000010;
+            case '°': return 0b11000110;
+            case '?': return 0b11001010;
+
+            case 'K':
+            case 'k':
+            case 'M':
+            case 'm':
+            case 'V':
+            case 'v':
+            case 'W':
+            case 'w':
+            case 'X':
+            case 'x':
+            case 'Z':
+            case 'z':
+
+            case ' ':
+            case '':
+            default:  return 0b00000000;
+        }
     }
 }
