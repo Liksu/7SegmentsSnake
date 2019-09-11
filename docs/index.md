@@ -151,7 +151,7 @@ Please, use browser that supports JS modules
 </script>
 <script nomodule>
     document.getElementById('nomodule').style.display = 'block';
-    'demoSVG demoFORM demoP constructor'.split(' ').forEach(selector => {
+    'demoSVG demoFORM demoP constructor'.split(' ').forEach(function(selector) {
         document.getElementById(selector).style.display = 'none');
     });
 </script>
