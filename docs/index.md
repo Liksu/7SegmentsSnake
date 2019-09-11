@@ -28,7 +28,6 @@ It was made as 'screen saver' for idle mod in our product.
 
 You can find the latest version on github [project release page](https://github.com/Liksu/7SegmentsSnake/releases).
 
- 
 
 ## Example
 
@@ -54,6 +53,8 @@ void loop() {
 }
 ```
 
+ 
+
 ## Usage
 
 ### Initialization
@@ -72,11 +73,18 @@ Make sure that you have LedControl and it was added to your project.
 Snake snake(ledControl);
 ```
 
-First parameter are required and should be the LedControl instance.\
+First parameter are required and should be the LedControl instance.<br>
 Also there are two optional parameters that you can pass to Snake constructor:
 
-* digitsCount - numbers of digits on your display, 4 by default
-* delay - the minimum delay in milliseconds between snake movement, 400 ms by default
+* `digitsCount` — numbers of digits on your display, 4 by default
+* `delay` — the minimum delay in milliseconds between snake movement, 400 ms by default
+
+Like this:
+```cpp
+Snake snake(ledControl);
+Snake snake(ledControl, 2);
+Snake snake(ledControl, 8, 100);
+```
 
 Snake library does not use real `delay()` call, so pause between movements are not blocking.
 
@@ -110,7 +118,7 @@ The second way is to move snake manually via calling the `snake.move()` manually
 void start(bool resetHead = true);
 ```
 
-Prepares snake to move.\
+Prepares snake to move.<br>
 Parameter `resetHead` defines do library need to re-generate head position or use existing.
 Using it as `false` allows to implement `continue after pause` behavior instead of restart.
 
@@ -130,7 +138,7 @@ Otherwise, it just stops movements (exclude manually) and allows to implement `p
 void move();
 ```
 
-Manually moves snake on display.\
+Manually moves snake on display.<br>
 Do not use `snake.enabled` flag.
 
 ### snake.tick
@@ -143,8 +151,8 @@ Allows to check time and move snake in main sketch's `loop`.
 
 ### property snake.enabled
 
-Type `bool`, represent state of snake.\
-if `false`, snake wont move on tick calls.\
+Type `bool`, represent state of snake.<br>
+if `false`, snake wont move on tick calls.<br>
 Managed by `snake.start` and `snake.stop` methods.
 
  
@@ -263,3 +271,14 @@ Please, use browser that supports JS modules
 ## Video of real usage
 
 <center><iframe width="320" height="179" src="https://www.youtube.com/embed/Ws4qPjABhV8" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></center>
+
+ 
+
+## Feedback
+
+If you find an error or have any other questions, please open issue on the [github project page](https://github.com/Liksu/7SegmentsSnake/issues).
+Or you can contact me using e-mail: [dev@Liksu.com](mailto:dev@Liksu.com).
+
+<hr>
+
+© 2019 Petro Borshchahivskyi
