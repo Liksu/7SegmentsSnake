@@ -105,7 +105,7 @@ Please, use browser that supports JS modules
         window.timerId = setInterval(() => snake.tick(), 50);
 
         window.redraw = function(form) {
-            const svg = document.querySelector('svg#demo');
+            const svg = document.querySelector('svg#demoSVG');
             svg.innerHTML = '';
             const config = {
                 digitsCount: form.digits.value,
