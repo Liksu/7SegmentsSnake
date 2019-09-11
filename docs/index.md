@@ -97,7 +97,7 @@ void loop() {
             
             if (snake.digitsCount != config.digitsCount) {
                 snake.digitsCount = config.digitsCount;
-                snake.start();
+                if (snake.enabled) snake.start();
             }
         };
 
