@@ -54,7 +54,7 @@ export default class Snake {
         let direction = random(2);
         direction = direction << 1 | (direction ^ magic);
 
-        return (direction << 6) | (random(digits) << 3) | (segment + 1);
+        return (direction << 6) | (random(this.digitsCount) << 3) | (segment + 1);
     }
     
     getNext(position) {
