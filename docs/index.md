@@ -94,6 +94,11 @@ void loop() {
 
             snake.display = window.display = new Display(svg, config);
             if (form.digitsText.value) display.setWord(form.digitsText.value);
+            
+            if (snake.digitsCount != config.digitsCount) {
+                snake.digitsCount = config.digitsCount;
+                snake.start();
+            }
         };
 
         snake.start();
