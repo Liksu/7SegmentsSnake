@@ -1,5 +1,5 @@
 #include <LedControl.h>
-#include "Snake.h"
+#include <Snake.h>
 
 // connect display with LedControl
 LedControl ledControl = LedControl(12, 11, 10, 1);

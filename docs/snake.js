@@ -42,16 +42,19 @@ export default class Snake {
         this.digitsCount = digits;
         this.delay = delay_ms;
 
+        this.tail1 = null;
+        this.tail2 = null;
+        this.enabled = false;
+        this.timer = 0;
+    }
+
+    getFirst() {
         let segment = random(7);
         let magic = +!(segment % 3);
         let direction = random(2);
         direction = direction << 1 | (direction ^ magic);
 
-        this.head = (direction << 6) | (random(digits) << 3) | (segment + 1);
-        this.tail1 = null;
-        this.tail2 = null;
-        this.enabled = false;
-        this.timer = 0;
+        return (direction << 6) | (random(digits) << 3) | (segment + 1);
     }
     
     getNext(position) {
@@ -109,12 +112,14 @@ export default class Snake {
         }
     }
 
-    stop() {
+    stop(hide = true) {
         this.enabled = false;
-        this.display.clear();
+        if (hide) this.display.clear();
     }
 
-    start() {
+    start(resetHead = true) {
+        if (resetHead) this.head = this.getFirst();
+
         this.drawSeg(this.head);
         this.timer = millis();
         this.enabled = true;
