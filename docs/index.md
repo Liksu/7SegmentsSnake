@@ -2,7 +2,7 @@
 title: Snake.h
 ---
 
-<link rel="shortcut icon" type="image/gif" href="./favicon.gif"/>
+<link rel="shortcut icon" type="image/gif" href="./favicon.ico"/>
 
 <style>
     text {font-family: sans-serif; font-size: 2em; fill: silver; alignment-baseline: middle; text-anchor: middle}
