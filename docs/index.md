@@ -16,6 +16,7 @@ title: Snake.h
     fieldset input {vertical-align: middle}
     label {display: block}
     fieldset > legend {padding: 0 1em}
+    .hidden {display: none}
 </style>
 
 # The snake library
@@ -48,9 +49,12 @@ void loop() {
 
 ## Demo
 
-Make display similar to yours. And then customize snake.
+Make display similar to yours. And then customize the snake:
 
+{:#demoSVG}
 <svg id="demo" width="100%" height="128"></svg>
+
+{:#demoFORM}
 <form onchange="redraw(this)" onsubmit="return false;">
 <fieldset>
     <legend>Display:</legend>
@@ -84,12 +88,16 @@ Make display similar to yours. And then customize snake.
 </fieldset>
 </form>
 
+{:#demoP}
 And here is your constructor:
 
 {:#constructor}
 ```cpp
 Snake snake(ledControl);
 ```
+
+{:#nomodule.hidden}
+Please, use browser that supports JS modules
 
 <script>
     window.start = function(Display, Snake) {
@@ -144,7 +152,10 @@ Snake snake(ledControl);
     window.start(Display, Snake);
 </script>
 <script nomodule>
-    document.write('Please, use browser that supports JS modules');
+    document.getElementById('nomodule').style.display = 'block';
+    'demoSVG demoFORM demoP constructor'.split(' ').forEach(selector => {
+        document.getElementById(selector).style.display = 'none');
+    });
 </script>
 
  
