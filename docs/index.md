@@ -120,14 +120,14 @@ Snake snake(ledControl);
             if (form.digits.value != 4 || params.length) params.unshift(form.digits.value);
             params.unshift('ledControl');
             
-            params = params.map(text => ({class: text === +text ? 'mi' : 'n', text}));
+            params = params.map(text => ({class: isNaN(parseInt(text)) ? 'n' : 'mi', text}));
             
             const tags = [
                 {class: 'n', text: 'Sanke'},
                 {text: ' '},
                 {class: 'n', text: 'sanke'},
                 {class: 'p', text: '('},
-                ...params.reduce((a, b) => [...a, {class: 'p', text: ', '}, b], [params.shift()]),
+                ...params.reduce((a, b) => [...a, {class: 'p', text: ','}, {text: ' '}, b], [params.shift()]),
                 {class: 'p', text: ');'},
             ].map(tag => tag.class ? `<span class="${tag.class}">${tag.text}</span>` : tag.text);
             
