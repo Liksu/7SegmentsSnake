@@ -3,6 +3,10 @@ title: Snake.h
 ---
 
 <link rel="shortcut icon" type="image/gif" href="./favicon.ico"/>
+<script>
+    var link = document.querySelector("link[rel*='icon']");
+    document.getElementsByTagName('head')[0].appendChild(link);
+</script>
 
 <style>
     text {font-family: sans-serif; font-size: 2em; fill: silver; alignment-baseline: middle; text-anchor: middle}
