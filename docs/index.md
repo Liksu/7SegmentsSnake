@@ -19,7 +19,16 @@ title: Snake.h
     .hidden {display: none}
 </style>
 
-# The snake library
+# The Arduino snake library
+
+This library allows to run snake on 7-segments display driven by [LedControl](http://wayoda.github.io/LedControl/).
+It was made as 'screen saver' for idle mod in our product.
+
+## Install
+
+You can find the latest version on github [project release page](https://github.com/Liksu/7SegmentsSnake/releases).
+
+ 
 
 ## Example
 
@@ -45,7 +54,100 @@ void loop() {
 }
 ```
 
+## Usage
 
+### Initialization
+
+Make sure that you have LedControl and it was added to your project.
+
+#### Add snake library to your project:
+
+```cpp
+#include <Snake.h>
+```
+
+#### Create snake variable:
+
+```cpp
+Snake snake(ledControl);
+```
+
+First parameter are required and should be the LedControl instance.\
+Also there are two optional parameters that you can pass to Snake constructor:
+
+* digitsCount - numbers of digits on your display, 4 by default
+* delay - the minimum delay in milliseconds between snake movement, 400 ms by default
+
+Snake library does not use real `delay()` call, so pause between movements are not blocking.
+
+#### Prepare to start:
+
+```cpp
+snake.start();
+```
+
+This command initialize position of snake's head (put it to te display in random place) and make some other preparation before run.
+
+### Movements
+
+You can choose two ways to move the snake. The first is to call `snake.tick()` on each iteration of main `loop`:
+
+```cpp
+void loop() {
+    snake.tick();
+}
+```
+
+In this case, the snake will be automatically moved when delay will over.
+
+The second way is to move snake manually via calling the `snake.move()` manually, when you need it.
+
+## Available methods
+
+### snake.start
+
+```cpp
+void start(bool resetHead = true);
+```
+
+Prepares snake to move.\
+Parameter `resetHead` defines do library need to re-generate head position or use existing.
+Using it as `false` allows to implement `continue after pause` behavior instead of restart.
+
+### snake.stop
+
+```cpp
+void stop(bool hide = true);
+```
+
+Stops snake on display.
+If parameter `hide` will be true (default behavior), segments of the snake will be switched off.
+Otherwise, it just stops movements (exclude manually) and allows to implement `pause`. 
+
+### snake.move
+
+```cpp
+void move();
+```
+
+Manually moves snake on display.\
+Do not use `snake.enabled` flag.
+
+### snake.tick
+
+```cpp
+void tick();
+```
+
+Allows to check time and move snake in main sketch's `loop`.
+
+### property snake.enabled
+
+Type `bool`, represent state of snake.\
+if `false`, snake wont move on tick calls.\
+Managed by `snake.start` and `snake.stop` methods.
+
+ 
 
 ## Demo
 
