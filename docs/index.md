@@ -96,7 +96,7 @@ void loop() {
             if (form.digitsText.value) display.setWord(form.digitsText.value);
             
             if (snake.digitsCount != config.digitsCount) {
-                snake.digitsCount = config.digitsCount;
+                snake.digitsCount = +config.digitsCount;
                 if (snake.enabled) snake.start();
             }
         };

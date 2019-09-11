@@ -118,7 +118,11 @@ export default class Snake {
     }
 
     start(resetHead = true) {
-        if (resetHead) this.head = this.getFirst();
+        if (resetHead) {
+            this.head = this.getFirst();
+            this.tail1 = null;
+            this.tail2 = null;
+        }
 
         this.drawSeg(this.head);
         this.timer = millis();
