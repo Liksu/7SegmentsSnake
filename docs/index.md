@@ -51,11 +51,9 @@ void loop() {
 
 Make display similar to yours. And then customize the snake:
 
-{:#demoSVG}
-<svg id="demo" width="100%" height="128"></svg>
+<svg id="demoSVG" width="100%" height="128"></svg>
 
-{:#demoFORM}
-<form onchange="redraw(this)" onsubmit="return false;">
+<form id="demoFORM" onchange="redraw(this)" onsubmit="return false;">
 <fieldset>
     <legend>Display:</legend>
     <label><input type="checkbox" name="showDP" checked> show digital points</label>
@@ -102,7 +100,7 @@ Please, use browser that supports JS modules
 <script>
     window.start = function(Display, Snake) {
         const config = {};
-        window.display = new Display('svg#demo', config);
+        window.display = new Display('svg#demoSVG', config);
         window.snake = new Snake(display, display.digitsCount);
         window.timerId = setInterval(() => snake.tick(), 50);
 
