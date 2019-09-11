@@ -127,7 +127,7 @@ Snake snake(ledControl);
                 {text: ' '},
                 {class: 'n', text: 'sanke'},
                 {class: 'p', text: '('},
-                ...params.reduce((a, b) => [...(a instanceof Array ? a : [a]), {class: 'p', text: ', '}, b]),
+                ...params.reduce((a, b) => [...a, {class: 'p', text: ', '}, b], [params.shift()]),
                 {class: 'p', text: ');'},
             ].map(tag => tag.class ? `<span class="${tag.class}">${tag.text}</span>` : $tag.text);
             
