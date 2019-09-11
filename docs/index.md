@@ -129,7 +129,7 @@ Snake snake(ledControl);
                 {class: 'p', text: '('},
                 ...params.reduce((a, b) => [...a, {class: 'p', text: ', '}, b], [params.shift()]),
                 {class: 'p', text: ');'},
-            ].map(tag => tag.class ? `<span class="${tag.class}">${tag.text}</span>` : $tag.text);
+            ].map(tag => tag.class ? `<span class="${tag.class}">${tag.text}</span>` : tag.text);
             
             document.querySelector('#constructor code').innerHTML = tags.join('');
         };
