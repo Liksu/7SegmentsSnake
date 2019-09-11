@@ -115,7 +115,7 @@ Snake snake(ledControl);
                 if (snake.enabled) snake.start();
             }
             
-            const params = [];
+            let params = [];
             if (form.delay.value != 400) params.push(form.delay.value);
             if (form.digits.value != 4 || params.length) params.unshift(form.digits.value);
             params.unshift('ledControl');
