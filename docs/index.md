@@ -42,39 +42,39 @@ void loop() {
 
 ## Demo
 
-    <svg id="demo" width="100%" height="128"></svg>
-    <form onchange="redraw(this)" onsubmit="return false;">
-    <fieldset>
-        <legend>Display:</legend>
-        <label><input type="checkbox" name="showDP" checked> show digital points</label>
-        <label><input type="checkbox" name="showDots" checked> show colons</label>
-        <label>
-            <input type="range" id="digits" value="4" min="1" max="8" step="1" name="digits" oninput="digitsOutput.value = this.value">
-            digits count:
-            <output name="digitsOutput">4</output>
-        </label>
-        <hr>
-        <label>Text: <input name="digitsText" type="text"> <button>show</button></label>
-        <p>
-            <button onclick="digitsText.value = display.clear() || ''">clear</button>
-        </p>
-    </fieldset>
-    <fieldset>
-        <legend>Snake:</legend>
-        <label>
-            <input type="range" id="delay" value="400" min="50" max="1000" step="50" name="delay" oninput="snake.delay = delayOutput.value = this.value">
-            delay:
-            <output name="delayOutput">400</output>
-            ms.
-        </label>
-        <p>
-            <button onclick="snake.start()">start</button>
-            <button onclick="snake.stop(false)">pause</button>
-            <button onclick="snake.start(false)">continue</button>
-            <button onclick="snake.stop()">stop</button>
-        </p>
-    </fieldset>
-    </form>
+<svg id="demo" width="100%" height="128"></svg>
+<form onchange="redraw(this)" onsubmit="return false;">
+<fieldset>
+    <legend>Display:</legend>
+    <label><input type="checkbox" name="showDP" checked> show digital points</label>
+    <label><input type="checkbox" name="showDots" checked> show colons</label>
+    <label>
+        <input type="range" id="digits" value="4" min="1" max="8" step="1" name="digits" oninput="digitsOutput.value = this.value">
+        digits count:
+        <output name="digitsOutput">4</output>
+    </label>
+    <hr>
+    <label>Text: <input name="digitsText" type="text"> <button>show</button></label>
+    <p>
+        <button onclick="digitsText.value = display.clear() || ''">clear</button>
+    </p>
+</fieldset>
+<fieldset>
+    <legend>Snake:</legend>
+    <label>
+        <input type="range" id="delay" value="400" min="50" max="1000" step="50" name="delay" oninput="snake.delay = delayOutput.value = this.value">
+        delay:
+        <output name="delayOutput">400</output>
+        ms.
+    </label>
+    <p>
+        <button onclick="snake.start()">start</button>
+        <button onclick="snake.stop(false)">pause</button>
+        <button onclick="snake.start(false)">continue</button>
+        <button onclick="snake.stop()">stop</button>
+    </p>
+</fieldset>
+</form>
 
 <script>
     window.start = function(Display, Snake) {
