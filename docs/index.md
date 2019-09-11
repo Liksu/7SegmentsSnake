@@ -120,7 +120,7 @@ Snake snake(ledControl);
             if (form.digits.value != 4 || params.length) params.unshift(form.digits.value);
             params.unshift('ledControl');
             
-            params = params.map(text => ({class: text === +text ? 'mi' : 'n', text});
+            params = params.map(text => ({class: text === +text ? 'mi' : 'n', text}));
             
             const tags = [
                 {class: 'n', text: 'Sanke'},
