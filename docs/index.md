@@ -123,9 +123,9 @@ Snake snake(ledControl);
             params = params.map(text => ({class: isNaN(parseInt(text)) ? 'n' : 'mi', text}));
             
             const tags = [
-                {class: 'n', text: 'Sanke'},
+                {class: 'n', text: 'Snake'},
                 {text: ' '},
-                {class: 'n', text: 'sanke'},
+                {class: 'n', text: 'snake'},
                 {class: 'p', text: '('},
                 ...params.reduce((a, b) => [...a, {class: 'p', text: ','}, {text: ' '}, b], [params.shift()]),
                 {class: 'p', text: ');'},
