@@ -6,7 +6,7 @@ title: Snake.h
     text {font-family: sans-serif; font-size: 2em; fill: silver; alignment-baseline: middle; text-anchor: middle}
     text.small {font-size: 0.8em; fill: darkgray}
     svg {margin: 0 auto; display: block}
-    fieldset {width: 45%; margin: 2em auto}
+    fieldset {width: 80%; margin: 2em auto}
     fieldset input {vertical-align: middle}
     label {display: block}
     fieldset > legend {padding: 0 1em}
