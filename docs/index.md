@@ -116,11 +116,19 @@ Snake snake(ledControl);
             }
             
             const params = [];
-            if (form.delay.value !== 400) params.push(form.delay.value);
-            if (form.digits.value !== 4 || params.length) params.unshift(form.digits.value);
-            const constructor = `Snake snake(${['ledControl', ...params].join(', ')});`;
+            if (form.delay.value != 400) params.push(form.delay.value);
+            if (form.digits.value != 4 || params.length) params.unshift(form.digits.value);
+            params.unshift('ledControl');
             
-            document.getElementById('constructor').innerText = constructor;
+            const tags = [
+                {class: 'n', text: 'Sanke'},
+                {class: 'n', text: 'sanke'},
+                {class: 'p', text: '('},
+                ...(params.map(text => ({class: 'n', text}))),
+                {class: 'p', text: ');'},
+            ].map(tag => `<span class="${tag.class}">${tag.text}</span>`);
+            
+            document.querySelector('#constructor code').innerHTML = tags.join('\n');
         };
 
         snake.start();
