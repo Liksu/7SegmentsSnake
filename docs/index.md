@@ -48,6 +48,8 @@ void loop() {
 
 ## Demo
 
+Make display similar to yours. And then customize snake.
+
 <svg id="demo" width="100%" height="128"></svg>
 <form onchange="redraw(this)" onsubmit="return false;">
 <fieldset>
@@ -82,6 +84,13 @@ void loop() {
 </fieldset>
 </form>
 
+And here is your constructor:
+
+{:#constructor}
+```cpp
+Snake snake(ledControl);
+```
+
 <script>
     window.start = function(Display, Snake) {
         const config = {};
@@ -93,7 +102,7 @@ void loop() {
             const svg = document.querySelector('svg#demo');
             svg.innerHTML = '';
             const config = {
-                digitsCount: form.digitsOutput.value,
+                digitsCount: form.digits.value,
                 showDP: form.showDP.checked,
                 showDots: form.showDots.checked
             };
@@ -105,6 +114,13 @@ void loop() {
                 snake.digitsCount = +config.digitsCount;
                 if (snake.enabled) snake.start();
             }
+            
+            const params = [];
+            if (form.delay.value !== 400) params.push(form.delay.value);
+            if (form.digits.value !== 4 || params.length) params.unshift(form.digits.value);
+            const constructor = `Snake snake(${['ledControl', ...params].join(', ')});`;
+            
+            document.getElementById('constructor').innerText = constructor;
         };
 
         snake.start();
