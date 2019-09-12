@@ -170,7 +170,7 @@ export default class Display {
         let char = 0;
         this.digits.forEach((_, i) => {
             const n = i + this.digitsCount % 2;
-            if (i && !(n % 2) && word[char] === ':') {
+            if (this.showDots && i && !(n % 2) && word[char] === ':') {
                 char++;
                 this.setColon(Math.floor(n / 2) - 1, true);
             }
