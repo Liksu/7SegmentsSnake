@@ -174,7 +174,7 @@ Make display similar to yours. And then customize the snake:
         <output name="digitsOutput">4</output>
     </label>
     <hr>
-    <label>Text: <input name="digitsText" type="text"> <button>show</button></label>
+    <label>Text: <input name="digitsText" type="text"> <button onclick="display.setWord(digitsText.value)">show</button></label>
     <p>
         <button onclick="digitsText.value = display.clear() || ''">clear</button>
     </p>
