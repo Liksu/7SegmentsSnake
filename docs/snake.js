@@ -1,4 +1,8 @@
-﻿const steps = [
+﻿//
+// Created by Petro Borshchahivskyi on 2019-09-09.
+//
+
+const steps = [
     0b010010100101,
     0b010010001000,
     0b011110111101,

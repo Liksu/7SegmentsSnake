@@ -1,3 +1,7 @@
+//
+// Created by Petro Borshchahivskyi on 2019-09-09.
+//
+
 /**
  * @typedef {Object} config
  * @property {Boolean} showDP = true - show digital points
