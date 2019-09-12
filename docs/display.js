@@ -161,6 +161,7 @@ export default class Display {
 
     clear() {
         this.digits.forEach((digit, i) => this.clearDigit(i));
+        this.colons.forEach((colon, i) => this.setColon(i, false));
     }
 
     setChar(digitIndex, char, dot = false) {
