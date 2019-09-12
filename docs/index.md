@@ -22,7 +22,7 @@ title: Snake.h
 # The Arduino snake library
 
 This library allows to run snake on 7-segments display driven by [LedControl](http://wayoda.github.io/LedControl/).
-It was made as 'screen saver' for idle mod in our product.
+It was made as 'screen saver' for idle mode in our product.
 
 ## Install
 
@@ -73,7 +73,7 @@ Make sure that you have LedControl and it was added to your project.
 Snake snake(ledControl);
 ```
 
-First parameter are required and should be the LedControl instance.<br>
+First parameter is required and should be the LedControl instance.<br>
 Also there are two optional parameters that you can pass to Snake constructor:
 
 * `digitsCount` — numbers of digits on your display, 4 by default

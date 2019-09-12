@@ -1,7 +1,7 @@
 /**
  * @typedef {Object} config
  * @property {Boolean} showDP = true - show digital points
- * @property {Boolean} showDots = true - show semicolon (clock's middle dots)
+ * @property {Boolean} showDots = true - show colon (clock's middle dots)
  * @property {Boolean} showText = false
  * @property {Number} digitsCount = 4
  * @property {Number} size.margin - distance between digits
@@ -85,7 +85,7 @@ export default class Display {
     
     draw() {
         this.digits = [];
-        this.semicolons = [];
+        this.colons = [];
         let x = 0;
         for (let i = 0; i < this.digitsCount; i++) {
             this.digits.push(this.makeDigit(x));
@@ -93,7 +93,7 @@ export default class Display {
 
             const reverseI = this.digitsCount - i;
             if (this.showDots && reverseI % 2 && reverseI > 2) {
-                this.semicolons.push(this.makeSemicolon(x + this.size.radius));
+                this.colons.push(this.makeColon(x + this.size.radius));
                 x += this.size.dotsPlace;
             }
         }
@@ -169,20 +169,25 @@ export default class Display {
     setWord(word) {
         let char = 0;
         this.digits.forEach((_, i) => {
+            const n = i + this.digitsCount % 2;
+            if (i && !(n % 2) && word[char] === ':') {
+                char++;
+                this.setColon(Math.floor(n / 2) - 1, true);
+            }
             this.setChar(i, word[char++] || ' ', Boolean(word[char] === '.' && char++));
         });
     }
 
-    setSemicolon(index, dotUp, dotDown = dotUp) {
+    setColon(index, dotUp, dotDown = dotUp) {
         if (typeof index === 'boolean' && dotUp === undefined) {
             dotUp = dotDown = index;
             index = 0;
         }
 
-        if (!this.showDots || index >= this.semicolons.length) return;
+        if (!this.showDots || index >= this.colons.length) return;
 
-        this.fillSegment(this.semicolons[index].dotUp, dotUp);
-        this.fillSegment(this.semicolons[index].dotDown, dotDown);
+        this.fillSegment(this.colons[index].dotUp, dotUp);
+        this.fillSegment(this.colons[index].dotDown, dotDown);
     }
 
     makeDigit(x = 0) {
@@ -207,9 +212,9 @@ export default class Display {
         return Object.assign([a, b, c, d, e, f, g, dp], {a, b, c, d, e, f, g, dp})
     }
 
-    makeSemicolon(x) {
+    makeColon(x) {
         const group = document.createElementNS(xmlns, 'g');
-        group.setAttributeNS(null, 'name', 'semicolon');
+        group.setAttributeNS(null, 'name', 'colon');
 
         const shift = this.size.segmentHeight - this.size.radius;
 
