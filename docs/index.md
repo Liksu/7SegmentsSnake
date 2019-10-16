@@ -26,7 +26,8 @@ It was made as 'screen saver' for idle mode in our product.
 
 ## Install
 
-You can find the latest version on github [project release page](https://github.com/Liksu/7SegmentsSnake/releases).
+Library available in the [library manager](http://arduino.cc/en/pmwiki.php?n=Guide/Libraries).
+Also, you can find the latest version on github [project release page](https://github.com/Liksu/7SegmentsSnake/releases).
 
 
 ## Example
