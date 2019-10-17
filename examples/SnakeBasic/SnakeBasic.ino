@@ -2,6 +2,7 @@
 #include <Snake.h>
 
 // connect display with LedControl
+// LedControl(dataPin, clockPin, csPin, numDevices)
 LedControl ledControl = LedControl(12, 11, 10, 1);
 
 // create Snake instance

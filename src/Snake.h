@@ -19,7 +19,7 @@
 
 
 #define SNAKE_STEPS_COUNT 34
-static uint16_t steps[]  = {
+static uint16_t steps[] = {
     0b010010100101,
     0b010010001000,
     0b011110111101,
