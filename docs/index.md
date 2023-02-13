@@ -26,7 +26,7 @@ It was made as 'screen saver' for idle mode in our product.
 
 ## Install
 
-Library available in the [library manager](http://arduino.cc/en/pmwiki.php?n=Guide/Libraries).<br>
+[Library](https://www.arduino.cc/reference/en/libraries/snake/) available in the [library manager](https://docs.arduino.cc/software/ide-v1/tutorials/installing-libraries).<br>
 Also, you can find the latest version on github [project release page](https://github.com/Liksu/7SegmentsSnake/releases).
 
 
