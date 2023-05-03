@@ -1,6 +1,8 @@
 # 7SegmentsSnake
 Snake library for Arduino and 7-segments display
 
+![Demo](https://liksu.github.io/7SegmentsSnake/demo.gif)
+
 ## Documentation
 Documentation for the library you can find on [Github Project Pages](https://liksu.github.io/7SegmentsSnake/).
 
